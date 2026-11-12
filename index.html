@@ -1,90 +1,248 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Portal Ujian Online</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login Guru - BNZexm CBT</title>
 <style>
-:root{
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-  --bg:#F5F6F8; --surface:#FFFFFF; --ink:#101B33; --muted:#5B6579; --line:#DDE1E9;
-  --navy:#14284B; --navy-ink:#FFFFFF; --accent:#B8862B; --accent-soft:#F6EEDC;
-  --shadow:0 1px 2px rgba(16,27,51,.06),0 8px 24px rgba(16,27,51,.06);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0B1220; --surface:#131C30; --ink:#EAEEF6; --muted:#9AA6BD; --line:#25324D;
-    --navy:#0F1A31; --navy-ink:#EAEEF6; --accent:#E0B25A; --accent-soft:#2A2414;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  :root{
+    --bg:#eef1f8; --card:#ffffff; --text:#1c2340; --muted:#6b7392;
+    --primary:#4a5590; --primary-d:#38427a; --border:#d9deee; --danger:#c0392b; --accent:#e8ebf7;
   }
-}
-:root[data-theme="dark"]{
-  --bg:#0B1220; --surface:#131C30; --ink:#EAEEF6; --muted:#9AA6BD; --line:#25324D;
-  --navy:#0F1A31; --navy-ink:#EAEEF6; --accent:#E0B25A; --accent-soft:#2A2414;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
-}
-html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
-*,*::before,*::after{box-sizing:border-box}
-body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);
-  font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;display:flex;flex-direction:column}
-header{background:var(--navy);color:var(--navy-ink);border-bottom:4px solid var(--accent)}
-.hero{max-width:960px;margin:0 auto;padding:56px 24px 64px}
-.brand{display:flex;align-items:center;gap:12px;margin-bottom:28px;font-weight:600;letter-spacing:.02em;opacity:.92}
-.mark{width:36px;height:36px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
-.mark svg{width:20px;height:20px;stroke:#14284B}
-h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(2rem,5.5vw,3.1rem);line-height:1.15;margin:0 0 14px;max-width:18ch}
-.lead{margin:0;max-width:52ch;font-size:1.05rem;line-height:1.6;opacity:.85}
-main{flex:1;width:100%;max-width:960px;margin:-32px auto 0;padding:0 24px 40px}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.card{display:flex;flex-direction:column;gap:20px;padding:28px;background:var(--surface);
-  border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);
-  color:inherit;text-decoration:none;transition:border-color .15s ease,transform .15s ease}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.ico{width:52px;height:52px;border-radius:10px;background:var(--accent-soft);display:grid;place-items:center}
-.ico svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.card h2{margin:0 0 6px;font-family:Georgia,serif;font-size:1.45rem}
-.card p{margin:0;color:var(--muted);line-height:1.55;font-size:.98rem}
-.cta{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);font-weight:600;color:var(--accent);display:flex;justify-content:space-between;align-items:center}
-.cta svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.note{margin-top:28px;padding:14px 18px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 8px 8px 0;color:var(--muted);font-size:.92rem;line-height:1.5}
-footer{padding:20px 24px;text-align:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
-@media (max-width:640px){
-  .menu{grid-template-columns:1fr}
-  .hero{padding:40px 20px 56px}
-  main{padding:0 16px 32px}
-}
-@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12162a; --card:#1b2140; --text:#eef0fa; --muted:#9aa2c7; --primary:#7b88d6; --primary-d:#97a2e6; --border:#2d3563; --accent:#252c55; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px}
+  .wrap{width:100%;max-width:760px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 8px 30px rgba(40,50,100,.08)}
+  .brand{text-align:center;margin-bottom:22px}
+  .brand h1{margin:0;font-size:22px}
+  .brand p{margin:4px 0 0;color:var(--muted);font-size:14px}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+  input,select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:transparent;color:var(--text)}
+  input:focus,select:focus{outline:2px solid var(--primary);border-color:transparent}
+  select option{color:#1c2340}
+  .pw{position:relative}
+  .pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--muted);cursor:pointer;font-size:13px;padding:8px}
+  .btn{width:100%;margin-top:20px;padding:13px;border:0;border-radius:10px;background:var(--primary);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+  .btn:hover{background:var(--primary-d)}
+  .btn:disabled{opacity:.6;cursor:wait}
+  .btn.ghost{background:var(--accent);color:var(--text);margin:0;width:auto;padding:9px 16px;font-size:13px}
+  .err{margin-top:14px;color:var(--danger);font-size:14px;text-align:center;min-height:18px}
+  .hidden{display:none}
+  .head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .head h2{margin:0;font-size:19px}
+  .head p{margin:2px 0 0;color:var(--muted);font-size:13px}
+  .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  th{background:var(--primary);color:#fff;text-align:left;padding:11px 14px;font-weight:600}
+  td{padding:11px 14px;border-top:1px solid var(--border)}
+  .token{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;letter-spacing:.5px}
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  .refresh-info{font-size:12px;color:var(--muted);min-height:16px;margin:-8px 0 10px}
+  .empty{padding:24px;text-align:center;color:var(--muted)}
 </style>
 </head>
 <body>
-<header>
-  <div class="hero">
-    <div class="brand">
-      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></span>
-      Portal Ujian Online
+<div class="wrap">
+  <div class="card">
+
+    <!-- LOGIN -->
+    <div id="viewLogin">
+      <div class="brand">
+        <h1>BNZexm CBT</h1>
+        <p>Login Guru untuk melihat token ujian</p>
+      </div>
+      <label for="nama">Nama Guru</label>
+      <select id="nama"><option value="">Memuat daftar guru...</option></select>
+      <label for="password">Password</label>
+      <div class="pw">
+        <input id="password" type="password" autocomplete="current-password" placeholder="Password">
+        <button type="button" id="togglePw">Lihat</button>
+      </div>
+      <button class="btn" id="btnLogin">Masuk</button>
+      <div class="err" id="err"></div>
     </div>
-    <h1>Ujian dan jadwal dalam satu tempat</h1>
-    <p class="lead">Akses bank soal ujian khusus guru dan cek jadwal pelaksanaan ujian. Pilih salah satu menu di bawah.</p>
+
+    <!-- HASIL -->
+    <div id="viewResult" class="hidden">
+      <div class="head">
+        <div>
+          <h2 id="welcome">Halo</h2>
+          <p>Berikut token ujian Anda</p>
+        </div>
+        <div class="actions"><button class="btn ghost" id="btnRefresh">Perbarui Token</button><button class="btn ghost" id="btnLogout">Keluar</button></div>
+      </div>
+      <div class="refresh-info" id="refreshInfo"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>TOKEN</th><th>MAPEL</th><th>KELAS</th><th>WAKTU</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
-</header>
-<main>
-  <nav class="menu" aria-label="Menu utama">
-    <a class="card" href="https://ombenz86.github.io/exm/" target="_blank" rel="noopener">
-      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13l2 2 4-4"/></svg></span>
-      <div><h2>Bank Soal Ujian</h2><p>Khusus guru. Kelola, susun, dan siapkan soal ujian untuk setiap kelas dan mata pelajaran.</p></div>
-      <span class="cta">Buka bank soal <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="card" href="https://ombenz86.github.io/Jadwal/" target="_blank" rel="noopener">
-      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
-      <div><h2>Jadwal Ujian</h2><p>Lihat tanggal, waktu, dan mata pelajaran yang diujikan.</p></div>
-      <span class="cta">Buka jadwal <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-  </nav>
-  <div class="note">Bank Soal Ujian hanya untuk guru. Jaga kerahasiaan soal dan jangan bagikan tautannya kepada siswa.</div>
-</main>
-<footer>Portal Ujian Online</footer>
+</div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbwAokyOBdnoPizKzFFiBU5xhMh694BjNwQEPEthHng8fTkhvWduOytSF0tF3GsrB4bQ/exec';
+
+const $ = id => document.getElementById(id);
+
+function esc(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// JSONP: cara paling andal memanggil Apps Script dari halaman web (tanpa masalah CORS)
+function jsonp(){
+  return new Promise((resolve, reject) => {
+    const cb = 'cb_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+    const script = document.createElement('script');
+    const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 20000);
+    function cleanup(){ clearTimeout(timer); delete window[cb]; script.remove(); }
+    window[cb] = data => { cleanup(); resolve(data); };
+    script.onerror = () => { cleanup(); reject(new Error('script error')); };
+    script.src = API_URL + '?callback=' + cb + '&t=' + Date.now();
+    document.body.appendChild(script);
+  });
+}
+
+// Coba JSONP dulu (perlu Code.gs versi baru), jika gagal coba fetch biasa
+async function loadData(){
+  let j;
+  try{
+    j = await jsonp();
+  }catch(e1){
+    try{
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 20000);
+      const r = await fetch(API_URL + '?t=' + Date.now(), { signal: ctrl.signal });
+      clearTimeout(timer);
+      j = await r.json();
+    }catch(e2){
+      throw new Error('Gagal terhubung ke server. Pastikan Code.gs sudah diperbarui, lalu Deploy > Manage deployments > Edit > New version (Execute as: Me, Access: Anyone).');
+    }
+  }
+  if (!j || j.status !== 'success') throw new Error('Server mengembalikan status gagal');
+  return j;
+}
+
+const norm = v => String(v == null ? '' : v).trim();
+
+async function initGuru(){
+  const sel = $('nama');
+  try{
+    const j = await loadData();
+    const names = [...new Set((j.teacher_data || []).map(g => norm(g['NAMA GURU'])).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, 'id'));
+    sel.innerHTML = '<option value="">-- Pilih nama guru --</option>' +
+      names.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join('');
+  }catch(e){
+    sel.innerHTML = '<option value="">Gagal memuat daftar guru</option>';
+    $('err').textContent = e.message;
+  }
+}
+
+let currentGuru = '';
+
+// Token diambil dari Sheet 1. Jika Sheet 1 punya kolom "NAMA GURU", tampilkan hanya milik guru ini;
+// jika tidak ada kolom itu, tampilkan semua baris Sheet 1.
+function buildRows(j, namaGuru){
+  const exam = j.exam_data || [];
+  const adaKolomGuru = exam.some(x => Object.prototype.hasOwnProperty.call(x, 'NAMA GURU'));
+  const namaLogin = namaGuru.toLowerCase();
+  return exam
+    .filter(x => norm(x['TOKEN']) !== '')
+    .filter(x => !adaKolomGuru || norm(x['NAMA GURU']).split(/[,;\n]+/).map(n => n.trim().toLowerCase()).includes(namaLogin))
+    .map(x => ({
+      token: norm(x['TOKEN']),
+      mapel: norm(x['MAPEL']),
+      kelas: norm(x['KELAS']),
+      waktu: norm(x['WAKTU PENGERJAAN'])
+    }));
+}
+
+async function refreshToken(){
+  const btn = $('btnRefresh');
+  btn.disabled = true; btn.textContent = 'Memperbarui...';
+  $('refreshInfo').textContent = '';
+  try{
+    const j = await loadData();
+    const masihAda = (j.teacher_data || []).some(g => norm(g['NAMA GURU']).toLowerCase() === currentGuru.toLowerCase());
+    if (!masihAda){ logout(); $('err').textContent = 'Akun tidak ditemukan, silakan login ulang'; return; }
+    showResult({ ok: true, nama: currentGuru, data: buildRows(j, currentGuru) });
+    const t = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    $('refreshInfo').textContent = 'Diperbarui ' + t;
+  }catch(e){
+    $('refreshInfo').textContent = e.message;
+  }finally{
+    btn.disabled = false; btn.textContent = 'Perbarui Token';
+  }
+}
+
+async function login(){
+  const nama = $('nama').value.trim();
+  const password = $('password').value;
+  $('err').textContent = '';
+  if (!nama){ $('err').textContent = 'Pilih nama guru terlebih dahulu'; return; }
+  if (!password){ $('err').textContent = 'Password wajib diisi'; return; }
+
+  const btn = $('btnLogin');
+  btn.disabled = true; btn.textContent = 'Memeriksa...';
+  try{
+    const j = await loadData();
+    const guru = (j.teacher_data || []).find(g =>
+      norm(g['NAMA GURU']).toLowerCase() === nama.toLowerCase() &&
+      norm(g['PASSWORD']) === password.trim());
+    if (!guru){ $('err').textContent = 'Nama guru atau password salah'; return; }
+
+    currentGuru = norm(guru['NAMA GURU']);
+    const data = buildRows(j, currentGuru);
+    showResult({ ok: true, nama: currentGuru, data });
+  }catch(e){
+    $('err').textContent = e.message;
+  }finally{
+    btn.disabled = false; btn.textContent = 'Masuk';
+  }
+}
+
+function showResult(res){
+  $('welcome').textContent = 'Halo, ' + res.nama;
+  const rows = res.data || [];
+  $('tbody').innerHTML = rows.length
+    ? rows.map(r => `
+        <tr>
+          <td class="token">${esc(r.token)}</td>
+          <td>${esc(r.mapel)}</td>
+          <td>${esc(r.kelas)}</td>
+          <td>${esc(r.waktu)}</td>
+        </tr>`).join('')
+    : `<tr><td colspan="4" class="empty">Belum ada token di Sheet 1 untuk Anda.</td></tr>`;
+  $('viewLogin').classList.add('hidden');
+  $('viewResult').classList.remove('hidden');
+}
+
+function logout(){
+  currentGuru = ''; $('refreshInfo').textContent = '';
+  $('password').value = '';
+  $('viewResult').classList.add('hidden');
+  $('viewLogin').classList.remove('hidden');
+}
+
+$('btnLogin').addEventListener('click', login);
+$('btnLogout').addEventListener('click', logout);
+$('btnRefresh').addEventListener('click', refreshToken);
+$('password').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+$('nama').addEventListener('change', () => $('password').focus());
+initGuru();
+$('togglePw').addEventListener('click', () => {
+  const p = $('password');
+  p.type = p.type === 'password' ? 'text' : 'password';
+  $('togglePw').textContent = p.type === 'password' ? 'Lihat' : 'Sembunyi';
+});
+
+</script>
 </body>
 </html>
