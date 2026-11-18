@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Login Guru - BNZexm CBT</title>
 <style>
   :root{
@@ -13,35 +13,61 @@
     :root{ --bg:#12162a; --card:#1b2140; --text:#eef0fa; --muted:#9aa2c7; --primary:#7b88d6; --primary-d:#97a2e6; --border:#2d3563; --accent:#252c55; }
   }
   *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px}
-  .wrap{width:100%;max-width:760px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 8px 30px rgba(40,50,100,.08)}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;min-height:100vh;min-height:100dvh;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px;overflow-x:hidden}
+  .wrap{width:100%;max-width:440px;min-width:0}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 8px 30px rgba(40,50,100,.08);min-width:0}
   .brand{text-align:center;margin-bottom:22px}
   .brand h1{margin:0;font-size:22px}
   .brand p{margin:4px 0 0;color:var(--muted);font-size:14px}
   label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
-  input,select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:15px;background:transparent;color:var(--text)}
+  input,select{width:100%;max-width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:16px;background:transparent;color:var(--text)}
   input:focus,select:focus{outline:2px solid var(--primary);border-color:transparent}
   select option{color:#1c2340}
   .pw{position:relative}
+  .pw input{padding-right:84px}
   .pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--muted);cursor:pointer;font-size:13px;padding:8px}
   .btn{width:100%;margin-top:20px;padding:13px;border:0;border-radius:10px;background:var(--primary);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
   .btn:hover{background:var(--primary-d)}
   .btn:disabled{opacity:.6;cursor:wait}
   .btn.ghost{background:var(--accent);color:var(--text);margin:0;width:auto;padding:9px 16px;font-size:13px}
-  .err{margin-top:14px;color:var(--danger);font-size:14px;text-align:center;min-height:18px}
+  .err{margin-top:14px;color:var(--danger);font-size:14px;text-align:center;min-height:18px;word-break:break-word}
   .hidden{display:none}
   .head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-  .head h2{margin:0;font-size:19px}
+  .head h2{margin:0;font-size:19px;word-break:break-word}
   .head p{margin:2px 0 0;color:var(--muted);font-size:13px}
-  .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px}
-  table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
-  th{background:var(--primary);color:#fff;text-align:left;padding:11px 14px;font-weight:600}
-  td{padding:11px 14px;border-top:1px solid var(--border)}
+  .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;width:fit-content;max-width:100%}
+  table{width:auto;border-collapse:collapse;font-size:14px}
+  th{background:var(--primary);color:#fff;text-align:left;padding:11px 18px;font-weight:600;white-space:nowrap}
+  td{padding:11px 18px;border-top:1px solid var(--border);word-break:break-word;white-space:nowrap}
   .token{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:700;letter-spacing:.5px}
   .actions{display:flex;gap:8px;flex-wrap:wrap}
-  .refresh-info{font-size:12px;color:var(--muted);min-height:16px;margin:-8px 0 10px}
+  .refresh-info{font-size:12px;color:var(--muted);min-height:16px;margin:-8px 0 10px;word-break:break-word}
   .empty{padding:24px;text-align:center;color:var(--muted)}
+
+  /* ====== TAMPILAN HP: tabel berubah jadi kartu agar tidak terpotong ====== */
+  @media all{
+    body{padding:12px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));align-items:flex-start}
+    .card{padding:18px;border-radius:14px}
+    .brand h1{font-size:20px}
+    .head{flex-direction:column;align-items:stretch}
+    .actions{display:grid;grid-template-columns:1fr 1fr}
+    .btn.ghost{width:100%;padding:11px 10px}
+
+    .table-wrap{border:0;border-radius:0;overflow:visible;width:100%}
+    table,tbody,tr,td{display:block;width:100%}
+    td{white-space:normal}
+    thead{display:none}
+    tr{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;background:var(--card)}
+    tr:last-child{margin-bottom:0}
+    td{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 14px;border-top:1px solid var(--border);text-align:right}
+    td:first-child{border-top:0}
+    td::before{content:attr(data-label);flex:0 0 auto;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;text-align:left}
+    td.token{background:var(--accent);font-size:20px;justify-content:space-between;align-items:center}
+    td.empty{display:block;text-align:center;border:0}
+    td.empty::before{content:none}
+    tr:has(td.empty){border-style:dashed}
+  }
 </style>
 </head>
 <body>
@@ -214,10 +240,10 @@ function showResult(res){
   $('tbody').innerHTML = rows.length
     ? rows.map(r => `
         <tr>
-          <td class="token">${esc(r.token)}</td>
-          <td>${esc(r.mapel)}</td>
-          <td>${esc(r.kelas)}</td>
-          <td>${esc(r.waktu)}</td>
+          <td class="token" data-label="Token">${esc(r.token)}</td>
+          <td data-label="Mapel">${esc(r.mapel)}</td>
+          <td data-label="Kelas">${esc(r.kelas)}</td>
+          <td data-label="Waktu">${esc(r.waktu)}</td>
         </tr>`).join('')
     : `<tr><td colspan="4" class="empty">Belum ada token di Sheet 1 untuk Anda.</td></tr>`;
   $('viewLogin').classList.add('hidden');
